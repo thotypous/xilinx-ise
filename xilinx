@@ -2,4 +2,4 @@
 
 XILINX_LIC=${XILINX_LIC:-$HOME/.Xilinx/Xilinx.lic}
 
-docker run --rm -it -v $XILINX_LIC:/root/.Xilinx/Xilinx.lic -v $(pwd):/build docker.i74.de:5000/xilinx-ise:latest /usr/local/bin/wrapper "$@"
+docker run --net=host -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro -v ~/.Xauthority:/root/.Xauthority:ro --rm -it -v $XILINX_LIC:/root/.Xilinx/Xilinx.lic -v $(pwd):/build docker.i74.de:5000/xilinx-ise:latest /usr/local/bin/wrapper "$@"
